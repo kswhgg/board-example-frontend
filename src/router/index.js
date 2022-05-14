@@ -6,6 +6,7 @@ import PostViewPage from '@/pages/PostViewPage'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
