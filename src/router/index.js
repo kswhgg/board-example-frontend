@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Signup from '@/pages/Signup'
+import Signin from '@/pages/Signin'
 import PostListPage from '@/pages/PostListPage'
 import PostViewPage from '@/pages/PostViewPage'
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: Signin
     },
     {
       path: '/post/:postId',
