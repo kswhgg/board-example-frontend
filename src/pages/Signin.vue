@@ -8,11 +8,19 @@
 
 <script>
 import SigninForm from '@/components/SigninForm'
+import api from '@/api'
 export default {
   name: 'Signin',
   methods: {
     onSubmit (payload) {
-        console.log('payload -> ', payload)
+        const {email,password} = payload
+        api.post('/auth/signin', {email,password})
+        .then(res => {
+            const { accessToken } = res.data
+            api.defaults.headers.common.Authoriaztion = `Bearer ${accessToken}`
+            alert('로그인이 완료되었습니다.')
+            this.$router.push({ name: 'PostListPage' })
+        })
     },
   },
   components: {
