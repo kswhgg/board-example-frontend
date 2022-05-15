@@ -1,6 +1,7 @@
 import api from '@/api'
 import {
     SET_ACCESS_TOKEN,
+    SET_MY_INFO,
     FETCH_POST,
     FETCH_POST_LIST
 } from './mutation-types'
@@ -12,7 +13,18 @@ export default {
     .then(res => {
         const { accessToken } = res.data
         commit(SET_ACCESS_TOKEN, accessToken)
+
+        return api.get('/users/me')
+    }).then(res => {
+      commit(SET_MY_INFO, res.data)
     })
+  },
+  signinByToken ({ commit }, token) {
+    commit(SET_ACCESS_TOKEN, token)
+    return api.get('/users/me')
+      .then(res => {
+        commit(SET_MY_INFO, res.data)
+      })
   },
   fetchPostList ({ commit }) {
     return api.get('/posts')
