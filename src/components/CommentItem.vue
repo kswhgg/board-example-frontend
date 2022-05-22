@@ -11,7 +11,7 @@
     <p v-else>{{ comment.contents }}</p>
     <ul v-if="isMyComment">
       <li><button type="button" @click="toggleEditMode">{{ editButtonText }}</button></li>
-      <li><button type="button">삭제</button></li>
+      <li><button type="button" @click="onDelete">삭제</button></li>
     </ul>
   </div>
 </template>
@@ -58,6 +58,10 @@ export default {
       if (this.isEditing) {
         this.editMessage = this.comment.contents
       }
+    },
+    onDelete () {
+      const { id } = this.comment
+      this.$emit('delete', id)
     },
     onEdit () {
       if (this.isValidComment) {
